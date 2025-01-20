@@ -13,8 +13,13 @@ $validColors = [ 'R', 'B', 'V', 'J', 'O', 'P'];
 // Combinaison secrète aléatoire
 function generateCombination($validColors) {
     $combination = [];
+    $usedColors = [];
     for ($i = 0; $i < 4; $i++) {
-        $combination[] = $validColors[array_rand($validColors)]; // Ajoute une couleur aléatoire
+        do {
+            $color = $validColors[array_rand($validColors)];
+        } while (in_array($color, $usedColors));
+        $combination[] = $color;
+        $usedColors[] = $color;
     }
     return $combination;
 }
