@@ -1,14 +1,10 @@
 <?php 
-
 const RED = "\033[31m";
 const GREEN = "\033[32m";
 const YELLOW = "\033[33m";
 const RESET = "\033[0m";
 
 $validColors = [ 'R', 'B', 'V', 'J', 'O', 'P'];
-
-// implode() — Rassemble les éléments d'un tableau en une chaîne
-// echo "La combinaison secrète est : " . implode('', $combination);
 
 // Combinaison secrète aléatoire
 function generateCombination($validColors) {
