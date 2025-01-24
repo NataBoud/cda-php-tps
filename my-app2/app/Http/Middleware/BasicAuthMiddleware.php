@@ -30,6 +30,7 @@ class BasicAuthMiddleware
                 }
             }
         }
-        return response('Unauthorized', 401)->header('WWW-Authenticate', 'Basic');
+        // return response('Unauthorized', 401)->header('WWW-Authenticate', 'Basic');
+        abort(403);
     }
 }
