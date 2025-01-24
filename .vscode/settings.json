@@ -1,3 +1,7 @@
 {
-  "conventionalCommits.scopes": ["Laravel", "Dependency-installer"]
+  "conventionalCommits.scopes": [
+    "Laravel",
+    "Dependency-installer",
+    "Settings.json"
+  ]
 }
