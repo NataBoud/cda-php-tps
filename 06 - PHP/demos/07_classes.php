@@ -115,3 +115,8 @@ $math = new MathExtended();
 $math->hello();
 $bodyguard = new BodyGuard();
 $bodyguard->hello();
+
+$guitareJson = json_encode($guitare);
+
+$tableau = json_decode($guitareJson);
+var_dump($tableau);
