@@ -2,6 +2,7 @@
   "conventionalCommits.scopes": [
     "Laravel",
     "Dependency-installer",
-    "Settings.json"
+    "Settings.json",
+    "Tondeuse-POO"
   ]
 }
