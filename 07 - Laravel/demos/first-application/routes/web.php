@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Middleware\DateMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -46,4 +47,19 @@ Route::name('home.')
         // grâce au prefix, le nom de la route correspond à : home.index
         Route::get('/', 'index')->name('index');
         Route::get('/redirect', 'redirectToIndex')->name('redirect');
+    });
+
+Route::name('products.')
+    ->prefix('products')
+    ->controller(ProductsController::class)
+    ->group(function()
+    {
+        // liste des produits
+        Route::get('/', 'index')->name('index');
+        // détail d'un produit
+        Route::get('/details/{id}', 'details')->name('details');
+        // page de création d'un produit
+        Route::get('/create', 'create')->name('create');
+        // peristance du produit
+        Route::post('/', 'store')->name('store');
     });
