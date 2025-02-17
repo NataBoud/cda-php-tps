@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
-    <h1>Contact Page</h1>
-    <p>This is the contact page content.</p>
-@endsection
+<x-layout>
+    <x-slot:heading>Contact</x-slot:heading>
+    Content contact
+</x-layout>
