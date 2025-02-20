@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Vinyl;
+use App\Models\Vinyle;
 use App\Models\Tag;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->timestamps();
         });
 
-        Schema::create('tag_vinyl', function (Blueprint $table) {
+        Schema::create('tag_vinyle', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Vinyl::class)
+            $table->foreignIdFor(Vinyle::class)
                 ->constrained()
                 ->cascadeOnDelete();
 
@@ -39,6 +39,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('tags');
-        Schema::dropIfExists('tag_vinyl');
+        Schema::dropIfExists('tag_vinyle');
     }
 };

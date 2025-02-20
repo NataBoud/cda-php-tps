@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vinyls', function (Blueprint $table) {
+        Schema::create('artists', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('artist');
-            $table->string('label');
-            $table->year('year')->nullable(); 
-            $table->text('description')->nullable(); 
-            $table->decimal('price', 8, 2)->nullable(); 
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vinyls');
+        Schema::dropIfExists('artists');
     }
 };

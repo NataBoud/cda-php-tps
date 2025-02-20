@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Vinyl>
  */
-class VinylFactory extends Factory
+class VinyleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,6 @@ class VinylFactory extends Factory
     {
         return [
             'title' => fake()->sentence(3), 
-            'artist' => fake()->name(),
             'year' => fake()->year(), 
             'label' => fake()->company(),  
             'description' => fake()->paragraph(2), 

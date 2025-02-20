@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Artist;
 use Illuminate\Database\Seeder;
+use App\Models\Vinyle;
+use App\Models\Tag;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +14,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $tags = Tag::factory(10)->create();
+        $artists = Artist::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Vérifie qu'il y a bien des artistes
+        if ($artists->isEmpty()) {
+            throw new \Exception("No artists found in the database.");
+        }
+
+        // Créer les vinyles et assigner un artiste et des tags
+        Vinyle::factory(20)->make()->each(function ($vinyle) use ($artists, $tags) {
+
+            $vinyle->artist_id = $artists->random()->id;
+            $vinyle->save();
+
+            $vinyle->tags()->attach(
+                $tags->random(rand(1, 3))->pluck('id')->toArray()
+            );
+        });
     }
+
 }

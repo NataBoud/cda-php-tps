@@ -1,21 +1,33 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Vinyl;
-use Illuminate\Support\Arr;
+use App\Models\Vinyle;
+use Illuminate\Http\Request;
+
 
 Route::get('/', function () {
-    return view('accueil', [ 'vinyls' => Vinyl::all()]);
+    $vinyles = Vinyle::with('artist')->paginate(3);
+    return view('accueil', [ 'vinyles' => $vinyles ]);
 });
 
-Route::get('/vinyls/{id}', function ($id) {  
-    $vinyls = Vinyl::all();
-    $vinyl = Arr::first($vinyls, fn($vinyl) => $vinyl['id'] == $id);
+Route::get('/search', function (Request $request) {
+    $query = $request->input('query');
+    $artist = $request->input('artist'); 
+    $tags = $request->input('tags'); 
+    $vinyles = Vinyle::search($query)
+     ->paginate(3)
+     ;
 
-    if (!$vinyl) {
-      return  abort(404, "Page n'est pas trouvé");
-    }
-    return view('vinyl', [ 'vinyl' => $vinyl ] );
+    return view('accueil', ['vinyles' => $vinyles, 'query' => $query]);
+
+    // return response()->json($vinyles);
+})->name('search');
+
+
+Route::get('/vinyles/{id}', function ($id) {
+    $vinyle = Vinyle::findOrFail($id);
+
+    return view('vinyle', ['vinyle' => $vinyle]);
 });
 
 Route::get('/contact', function () {
