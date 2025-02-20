@@ -24,14 +24,10 @@ class Vinyle extends Model
     public function toSearchableArray()
     {
 
-        $this->loadMissing(['artist', 'tags']);
-
         return [
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            // 'artist' => $this->artist ? $this->artist->name : null,
-            // 'tags' => $this->tags->pluck('name')->toArray(),
         ];
     }
 
